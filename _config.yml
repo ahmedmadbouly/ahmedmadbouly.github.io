@@ -1,0 +1,48 @@
+# Site settings
+title: Ahmed Madbouly's Blog
+description: A developer in a lifelong journey seeking after truth.
+baseurl: ""
+#url: "http://ahmedmadbouly.github.io/web"
+
+
+# User settings
+username: Ahmed Madbouly
+user_description: Wandering in a lifelong journey seeking after truth ...
+user_title: Web Developer & Beginner AI Researcher
+email: ahmedmadbouly88@yahoo.com
+twitter_username: AhmedMadpouly
+github_username:  ahmedmadbouly
+linkedin_username:  cout4
+
+name: Ahmed Madbouly
+avatar: https://avatars2.githubusercontent.com/u/20520645?v=4&s=400
+
+google_analytics: UA-106143873-1
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: /:title/
+
+
+# html minify
+compress_html:
+  clippings: all
+  comments: all
+  endings: []
+  profile: false
+
+# Links to include in menu navigation
+# For external links add external: true
+links:
+  - title: Home
+    url: /
+  - title: Categories
+    url: /categories
+  - title: Tags
+    url: /tags
+  - title: About Me
+    url: /about
+
+# exclude my node related stuff
+exclude: ['package.json', 'src', 'node_modules']
