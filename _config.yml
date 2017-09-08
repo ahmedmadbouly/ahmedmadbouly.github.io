@@ -3,12 +3,12 @@ title: Ahmed Madbouly's Blog
 description: A developer in a lifelong journey seeking after truth.
 baseurl: ""
 url: "http://ahmedmadbouly.github.io"
-
+#url: "http://localhost:3000"
 
 # User settings
 username: Ahmed Madbouly
 user_description: Wandering in a lifelong journey seeking after truth ...
-user_title: Web Developer & Beginner AI Researcher
+user_title: AI Researcher
 email: ahmedmadbouly88@yahoo.com
 twitter_username: AhmedMadpouly
 github_username:  ahmedmadbouly
