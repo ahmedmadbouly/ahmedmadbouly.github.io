@@ -7,7 +7,7 @@
         <section class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
             <article role="article" id="scroll" class="post-content" itemprop="articleBody">
-                {{ con tent }}
+                {{ content }}
             </article>
 
             {% include share.html %}
@@ -15,8 +15,7 @@
             {% include comments.html %}
             {% include footer.html %}
         </section>
-    </body>
-    <div id="disqus_thread"></div>
+	<div id="disqus_thread"></div>
 <script>
 
 /**
@@ -36,7 +35,9 @@ s.setAttribute('data-timestamp', +new Date());
 })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-                            
+
+	<script id="dsq-count-scr" src="//ahmed-madbouly.disqus.com/count.js" async></script>
+   
+    </body>
+
 </html>
-
-

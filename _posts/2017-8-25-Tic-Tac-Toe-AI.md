@@ -4,7 +4,7 @@ categories: [artificial intelligence, javascript]
 title: Building a Tic-Tac-Toe AI with Javascript
 ---
 
-<p align='center'> <img src = '{{site.baseurl}}/assets/images/ai_tic_tac_toe_header.png' alt = 'Tic-Tac-Toe AI'/> </p>
+<p align='center'> <img src = '{{site.baseurl}}/assets/img/ai_tic_tac_toe_header.png' alt = 'Tic-Tac-Toe AI'/> </p>
 
 When we say the word **game** in the context of AI we usually don’t mean it in the sense of entertainment games, instead we refer to a more general definition of a game:
 
@@ -422,7 +422,7 @@ We can reason about such function in the following manner:
 
 We now have our score function (which doesn't need to keep track of X's moves count as we said before):
 
-<p align = 'ceneter'><img src = '{{site.baseurl}}/assets/images/score_func.png' alt = 'Score Function'/></p>
+<p align = 'ceneter'><img src = '{{site.baseurl}}/assets/imag/score_func.png' alt = 'Score Function'/></p>
 
 We'll implement this as a public static function of the Game class. We implement it in the Game class because it's a game-related information, and static because it doesn't depend on specific instances of the game.
 
@@ -456,7 +456,7 @@ Now the AI needs a way to use the information provided by the score function in 
 
 The algorithm is used to calculate the minimax value of a specific state (or the action that leads to that state), and it works by knowing that someone wants to **mini**mize the score function and the other wants to **max**imize the score function (and that's why it's called **minimax**). Suppose that O wants to calculate the minimax value of the action that leads it to the state at level 0 in the following figure:
 
-<p align='center'><img src = '{{site.baseurl}}/assets/images/tree.png' alt = 'minimax tree'/></p>
+<p align='center'><img src = '{{site.baseurl}}/assets/img/tree.png' alt = 'minimax tree'/></p>
 
 * **At Level 0**: O wants to calculate the minimax value of that state, So it asks a question: What are X's moves if I took the action to that state ?! To answer this question, it generates all the states that X can reach through all his possible actions (The states in Level 1).
 * **At Level 1**: O Thinks about the moves it can make in response to each of X's moves, so it generates all the states it can reach from there by all possible actions (The states in Level 2).
