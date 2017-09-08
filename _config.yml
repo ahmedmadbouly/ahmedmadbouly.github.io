@@ -14,6 +14,8 @@ twitter_username: AhmedMadpouly
 github_username:  ahmedmadbouly
 linkedin_username: cout4
 facebook_username: cout4
+disqus_username: ahmedmadbouly
+disqus: ahmedmadbouly
 
 name: Ahmed Madbouly
 avatar: https://avatars2.githubusercontent.com/u/20520645?v=4&s=400
@@ -40,8 +42,6 @@ links:
     url: /
   - title: Categories
     url: /categories
-  - title: Tags
-    url: /tags
   - title: About Me
     url: /about
 
