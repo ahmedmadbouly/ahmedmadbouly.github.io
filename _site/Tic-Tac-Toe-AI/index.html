@@ -20,14 +20,14 @@
     <meta name="twitter:title" content="Building a Tic-Tac-Toe AI with Javascript">
     <meta name="twitter:description" content="A developer in a lifelong journey seeking after truth.">
     
-    <meta property="twitter:image:src" content="http://ahmedmadbouly.github.io/assets/img/blog-image.png">
+    <meta property="twitter:image:src" content="http://localhost:3000/assets/img/blog-image.png">
     
 
     <!-- Social: Facebook / Open Graph -->
-    <meta property="og:url" content="http://ahmedmadbouly.github.io/Tic-Tac-Toe-AI/">
+    <meta property="og:url" content="http://localhost:3000/Tic-Tac-Toe-AI/">
     <meta property="og:title" content="Building a Tic-Tac-Toe AI with Javascript">
     
-    <meta property="og:image" content="http://ahmedmadbouly.github.io/assets/img/blog-image.png">
+    <meta property="og:image" content="http://localhost:3000/assets/img/blog-image.png">
     
     <meta property="og:description" content="A developer in a lifelong journey seeking after truth.">
     <meta property="og:site_name" content="Ahmed Madbouly's Blog">
@@ -35,10 +35,11 @@
     <!-- Social: Google+ / Schema.org  -->
     <meta itemprop="name" content="Building a Tic-Tac-Toe AI with Javascript"/>
     <meta itemprop="description" content="A developer in a lifelong journey seeking after truth.">
-    <meta itemprop="image" content="http://ahmedmadbouly.github.io/assets/img/blog-image.png"/>
+    <meta itemprop="image" content="http://localhost:3000/assets/img/blog-image.png"/>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <!-- <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" /> -->
+    <link rel="shortcut icon" type="image/png" href="/favicon.png">
     <!-- Apple Touch Icons -->
     <link rel="apple-touch-icon" href="/assets/img/icons/apple-touch-icon.png" />
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/img/icons/apple-touch-icon-57x57.png" />
@@ -61,8 +62,8 @@
 
     <link rel="stylesheet" href="/assets/css/main.css">
     <link rel="stylesheet" href="/assets/css/side-note.css">
-    <link rel="canonical" href="http://ahmedmadbouly.github.io/Tic-Tac-Toe-AI/">
-    <link rel="alternate" type="application/rss+xml" title="Ahmed Madbouly's Blog" href="http://ahmedmadbouly.github.io/feed.xml" />
+    <link rel="canonical" href="http://localhost:3000/Tic-Tac-Toe-AI/">
+    <link rel="alternate" type="application/rss+xml" title="Ahmed Madbouly's Blog" href="http://localhost:3000/feed.xml" />
 
     <!-- MathJax Configurations -->
     <script type="text/javascript"
@@ -108,18 +109,18 @@
   <ul>
     
     
-      <li><a href="http://ahmedmadbouly.github.io/">Home</a></li>
+      <li><a href="http://localhost:3000/">Home</a></li>
     
     
     
-      <li><a href="http://ahmedmadbouly.github.io/categories">Categories</a></li>
+      <li><a href="http://localhost:3000/categories">Categories</a></li>
     
     
     
-      <li><a href="http://ahmedmadbouly.github.io/about">About Me</a></li>
+      <li><a href="http://localhost:3000/about">About Me</a></li>
     
     
-    <li><a class="feed" href="http://ahmedmadbouly.github.io/feed.xml" title="Atom/RSS feed">Feed</a></li>
+    <li><a class="feed" href="http://localhost:3000/feed.xml" title="Atom/RSS feed">Feed</a></li>
   </ul>
 </nav>
 </aside>
@@ -132,737 +133,32 @@
         <section class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
             <article role="article" id="scroll" class="post-content" itemprop="articleBody">
-                <p align="center"> <img src="/assets/images/ai_tic_tac_toe_header.png" alt="Tic-Tac-Toe AI" /> </p>
-
-<p>When we say the word <strong>game</strong> in the context of AI we usually don’t mean it in the sense of entertainment games, instead we refer to a more general definition of a game:</p>
-
-<blockquote>
-  <p>A game is a multi-agent environment in which agents compete and/or cooperate on some specific task(s) while meeting some specific criteria.
-An agent is referred to as a player.</p>
-</blockquote>
-
-<p>With this general definition we could see that a situation, like driving your car to a specific place, is a game. In such a situation, you (as a player) exist in an environment along with other drivers (other players) and you cooperate with some drivers to avoid crashes and reach your destination and compete with other drivers to reach there fast.</p>
-
-<p>We can easily see that entertainment games also fall under the general definition of games. Take chess for example. In chess there are two players (multi-agent) who are <em>competing</em> on who captures the other’s king first (the task) in the lowest number of moves (the criteria).And because entertainment games have the same properties and characteristics of any other general game, we can use a simple entertainment game to demonstrate the AI concepts and techniques used in any form of a general game, and that’s what this post is all about.</p>
-
-<p>We’ll be working with Tic-Tac-Toe as our demonstration game mainly because of its simplicity. It has simple rules, simple actions, and simple ending configurations, which makes it easy to describe it computationally.</p>
-
-<p>At the end of this post, you should have a working Tic-Tac-Toe game like the one <a href="/projects/tic-tac-toe-ai">here</a>. I’ll be focusing entirely on the game representation code and the AI code. I’ll not talk about any UI code or any of the tests code, but these are fully commented and easy to understand when read. The whole project including the tests is available at <a href="https://github.com/Mostafa-Samir/Tic-Tac-Toe-AI">Github</a>.</p>
-
-<p>The first thing we need to do is to describe and understand the game we want to build. We could describe it verbally as follows:</p>
-
-<blockquote>
-  <p>Two players (player X, and player O) play on 3x3 grid. Player X is a human player, and player O is an AI. A player can put his/her letter (either X or O) in an empty cell in the grid. If a player forms a row, a column or a diagonal with his/her letter, that player wins and the game ends. If the grid is full and there’s no row, column or diagonal of the same letter, the game ends at draw.
-A player should try to win in the lowest possible number of moves.</p>
-</blockquote>
-
-<h1 id="formal-definition">Formal Definition</h1>
-
-<p>In working on an AI problem, one of the most fundamental tasks is to convert a verbal description of the problem into a formal description that can be used by a computer. This task is called <strong>Formal Definition</strong>. In formal definition we take something like the verbal description of Tic-Tac-Toe we wrote above, and transform it into something we can code. This step is extremely important bacause the way you formally define your problem will determine whether easy or difficult it will be to implement the AI that solves the problem, and we certainly want that to be easy.</p>
-
-<p>Usually, there are some ready definitions we can use and tweak in formally defining a problem. These definitions have been presented and accepted by computer scientists and engineers to represent some classes of problems. One of these definitions is the game definition: If we know our problem represents a game, then we can define it with the following elements:</p>
-
-<ul>
-  <li><strong>A finite set of states</strong> of the game. In our game, each state would represent a certain configuration of the grid.</li>
-  <li><strong>A finite set of players</strong> which are the agents playing the game. In Tic-Tac-Toe there’s only two players: the human player and the AI.</li>
-  <li><strong>A finite set of actions</strong> that the players can do. Here, there’s only one action a player can do which is put his/her letter on an empty cell.</li>
-  <li><strong>A transition function</strong> that takes the current state and the played action and returns the next state in the game.</li>
-  <li><strong>A terminal test function</strong> that checks if a state is terminal (that is if the game ends at this state).</li>
-  <li><strong>A score function</strong> that calculates the score of the player at a terminal state.</li>
-</ul>
-
-<p>Using this formal definition, we can start reasoning about how we’re gonna code our description of the game into a working game:</p>
-
-<h1 id="the-state">The State</h1>
-
-<p>As we mentioned, one of the elements of our game is a set of states, so we now need to start thinking about how we’re gonna represent a state computationally.</p>
-
-<p>We said earlier that a state would represent a certain configuration of the grid, but this information need to be associated with some other bookkeeping. In a state, beside knowing the board configuration, we’ll need to know who’s turn is it, what the result of the game at this state is (whether it’s still running, somebody won, or it’s a draw), and we’ll need to know how many moves the O player (AI player) have made till this state (you would think that we’ll need to keep track of X player moves too, but no, and we’ll see soon why).</p>
-
-<p>The easiest way to represent the state is to make a class named State from which all the specific states will be instantiated. As we’ll need to read and modify all the information associated with a state at some points, we’ll make all the information public. We can see that modifying X moves count, the result of the state, and the board can be done with a simple assignment operation; while on the other hand, modifying the turn would require a comparison first to determine if it’s X or O before updating it’s value. So for modifying the turn, we’ll use a little public function that would do this whole process for us.</p>
-
-<p>There are still two more information we would need to know about a state. The 1st one is the empty cells in the board of this state. This can be easily done with a function that loops over the board, checks if a cell has the value “E” (Empty) and returns the indices of these cells in an array. The second information we need to know is that if this state is terminal or not (<strong>the terminal test function</strong>). This also can be easily done with a function that checks if there are matching rows, columns, or diagonals. If there is such a configuration, then it updates the result of the state with the winning player and returns true. If there is no such thing, it checks if the board is full. If it’s full, then it’s a draw and returns true, otherwise it returns false.</p>
-
-<p>For the board, it would be simpler to represent it as a 9-elements one-dimensional array instead of a 3x3 two-dimensional one. The 1st three elements would represent the 1st row, the 2nd three for the 2nd row, and the 3rd three for the 3rd row. One last thing to worry about is how we can construct a state. Instead of at each time we construct a state form scratch and fill its information one by one (think about filling the board array element by element), it would be convenient if we have a copy-constructor ability to construct a new state from an old one and have minimal information to modify.</p>
-
-<p>Now we’re ready to write our State class:</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/*
- * Represents a state in the game
- * @param old [State]: old state to intialize the new state
- */</span>
-<span class="kd">var</span> <span class="nx">State</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">old</span><span class="p">)</span> <span class="p">{</span>
-
-    <span class="cm">/*
-     * public : the player who has the turn to player
-     */</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">turn</span> <span class="o">=</span> <span class="s2">""</span><span class="p">;</span>
-
-    <span class="cm">/*
-     * public : the number of moves of the AI player
-     */</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">oMovesCount</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-
-    <span class="cm">/*
-     * public : the result of the game in this State
-     */</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">result</span> <span class="o">=</span> <span class="s2">"still running"</span><span class="p">;</span>
-
-    <span class="cm">/*
-     * public : the board configuration in this state
-     */</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">board</span> <span class="o">=</span> <span class="p">[];</span>
-
-    <span class="cm">/* Begin Object Construction */</span>
-    <span class="k">if</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">old</span> <span class="o">!==</span> <span class="s2">"undefined"</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// if the state is constructed using a copy of another state</span>
-        <span class="kd">var</span> <span class="nx">len</span> <span class="o">=</span> <span class="nx">old</span><span class="p">.</span><span class="nx">board</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">board</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="nx">len</span><span class="p">);</span>
-        <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">itr</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="nx">itr</span> <span class="o">&lt;</span> <span class="nx">len</span> <span class="p">;</span> <span class="nx">itr</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">this</span><span class="p">.</span><span class="nx">board</span><span class="p">[</span><span class="nx">itr</span><span class="p">]</span> <span class="o">=</span> <span class="nx">old</span><span class="p">.</span><span class="nx">board</span><span class="p">[</span><span class="nx">itr</span><span class="p">];</span>
-        <span class="p">}</span>
-
-        <span class="k">this</span><span class="p">.</span><span class="nx">oMovesCount</span> <span class="o">=</span> <span class="nx">old</span><span class="p">.</span><span class="nx">oMovesCount</span><span class="p">;</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">result</span> <span class="o">=</span> <span class="nx">old</span><span class="p">.</span><span class="nx">result</span><span class="p">;</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">turn</span> <span class="o">=</span> <span class="nx">old</span><span class="p">.</span><span class="nx">turn</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="cm">/* End Object Construction */</span>
-
-    <span class="cm">/*
-     * public : advances the turn in a the state
-     */</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">advanceTurn</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">turn</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">turn</span> <span class="o">===</span> <span class="s2">"X"</span> <span class="p">?</span> <span class="s2">"O"</span> <span class="p">:</span> <span class="s2">"X"</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="cm">/*
-     * public function that enumerates the empty cells in state
-     * @return [Array]: indices of all empty cells
-     */</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">emptyCells</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-        <span class="kd">var</span> <span class="nx">indxs</span> <span class="o">=</span> <span class="p">[];</span>
-        <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">itr</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">itr</span> <span class="o">&lt;</span> <span class="mi">9</span> <span class="p">;</span> <span class="nx">itr</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">board</span><span class="p">[</span><span class="nx">itr</span><span class="p">]</span> <span class="o">===</span> <span class="s2">"E"</span><span class="p">)</span> <span class="p">{</span>
-                <span class="nx">indxs</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">itr</span><span class="p">);</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-        <span class="k">return</span> <span class="nx">indxs</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="cm">/*
-     * public  function that checks if the state is a terminal state or not
-     * the state result is updated to reflect the result of the game
-     * @returns [Boolean]: true if it's terminal, false otherwise
-     */</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">isTerminal</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-        <span class="kd">var</span> <span class="nx">B</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">board</span><span class="p">;</span>
-
-        <span class="c1">//check rows</span>
-        <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="mi">6</span><span class="p">;</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">i</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">if</span><span class="p">(</span><span class="nx">B</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">!==</span> <span class="s2">"E"</span> <span class="o">&amp;&amp;</span> <span class="nx">B</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">===</span> <span class="nx">B</span><span class="p">[</span><span class="nx">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="nx">B</span><span class="p">[</span><span class="nx">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="nx">B</span><span class="p">[</span><span class="nx">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">])</span> <span class="p">{</span>
-                <span class="k">this</span><span class="p">.</span><span class="nx">result</span> <span class="o">=</span> <span class="nx">B</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">+</span> <span class="s2">"-won"</span><span class="p">;</span> <span class="c1">//update the state result</span>
-                <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-
-        <span class="c1">//check columns</span>
-        <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="mi">2</span> <span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">if</span><span class="p">(</span><span class="nx">B</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">!==</span> <span class="s2">"E"</span> <span class="o">&amp;&amp;</span> <span class="nx">B</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">===</span> <span class="nx">B</span><span class="p">[</span><span class="nx">i</span> <span class="o">+</span> <span class="mi">3</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="nx">B</span><span class="p">[</span><span class="nx">i</span> <span class="o">+</span> <span class="mi">3</span><span class="p">]</span> <span class="o">===</span> <span class="nx">B</span><span class="p">[</span><span class="nx">i</span> <span class="o">+</span> <span class="mi">6</span><span class="p">])</span> <span class="p">{</span>
-                <span class="k">this</span><span class="p">.</span><span class="nx">result</span> <span class="o">=</span> <span class="nx">B</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">+</span> <span class="s2">"-won"</span><span class="p">;</span> <span class="c1">//update the state result</span>
-                <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-
-        <span class="c1">//check diagonals</span>
-        <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">j</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="mi">2</span> <span class="p">;</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="nx">j</span> <span class="o">=</span> <span class="nx">j</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">if</span><span class="p">(</span><span class="nx">B</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">!==</span> <span class="s2">"E"</span> <span class="o">&amp;&amp;</span> <span class="nx">B</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">==</span> <span class="nx">B</span><span class="p">[</span><span class="nx">i</span> <span class="o">+</span> <span class="nx">j</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="nx">B</span><span class="p">[</span><span class="nx">i</span> <span class="o">+</span> <span class="nx">j</span><span class="p">]</span> <span class="o">===</span> <span class="nx">B</span><span class="p">[</span><span class="nx">i</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="nx">j</span><span class="p">])</span> <span class="p">{</span>
-                <span class="k">this</span><span class="p">.</span><span class="nx">result</span> <span class="o">=</span> <span class="nx">B</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">+</span> <span class="s2">"-won"</span><span class="p">;</span> <span class="c1">//update the state result</span>
-                <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-
-        <span class="kd">var</span> <span class="nx">available</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">emptyCells</span><span class="p">();</span>
-        <span class="k">if</span><span class="p">(</span><span class="nx">available</span><span class="p">.</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">//the game is draw</span>
-            <span class="k">this</span><span class="p">.</span><span class="nx">result</span> <span class="o">=</span> <span class="s2">"draw"</span><span class="p">;</span> <span class="c1">//update the state result</span>
-            <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
-        <span class="p">}</span>
-        <span class="k">else</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">};</span>
-
-<span class="p">};</span>
-</code></pre></div></div>
-
-<h1 id="the-human-player">The Human Player</h1>
-
-<p>We move on to the next element of our definition, which is the players. Our first player will be the human player, which we will represent and implement along with its actions through the UI and its controls. We won’t dive into that like we said earlier, but it’s very easy to understand by reading the code directly; it’s basically a jQuery click event handler on the grid cells that reads the current game state and update it by the performed move. You can read it off the <strong>control.js</strong> file in the <a href="https://github.com/Mostafa-Samir/Tic-Tac-Toe-AI">repo</a>.</p>
-
-<h1 id="the-ai-player">The AI Player</h1>
-
-<p>We now turn to the AI player. Usually when we design an AI, we would want it to be able to take the best possible decision on the problem at hand, but as we’re designing an AI for an entertainment game, I’d like to take advantage of that and demonstrate something related to entertainment game AI, which is the <strong>multiple difficulty levels</strong>. We’ll be designing an AI that can play Tic-Tac-Toe at three difficulty levels: <strong>Blind level</strong> in which the AI understands nothing about the game, <strong>Novice level</strong> in which the AI plays the game as a novice player, and the <strong>Master level</strong> in which the AI plays the game like a master you can never beat no matter how much you tried (<a href="/projects/tic-tac-toe-ai">go ahead</a>, play with master and see for yourself).</p>
-
-<p>We’ll postpone the detailed implementation of the AI a little bit. We’ll focus now on the internal structure of the <strong>AI</strong> class we’ll use to create the AI players. An AI player needs to know the following: its intelligence level (which is the game’s difficulty level), and the game it plays. We can represent those as private attributes and pass the intelligence level to the constructor and create a little public setter function that attaches the AI player to the game it plays. The AI player will need to be able to reason about the decisions it make which is the core functionality of the AI, we’ll implement that with a private function we name <strong>minimaxValue</strong> (don’t worry, we’ll get to what that means soon. All you need to know now is that it’s a function that takes a state and returns a number). The AI will also need to be able take three types moves: a blind move, a novice move, and a master move; we can implement that with a private function for each. The last thing we need is a way to notify the AI when its turn comes up to the action appropriate to its intelligence level, this can be simply done with a public function we call <strong>notify</strong>.</p>
-
-<p>Our AI class would be something like this:</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/*
- * Constructs an AI player with a specific level of intelligence
- * @param level [String]: the desired level of intelligence
- */</span>
-<span class="kd">var</span> <span class="nx">AI</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">level</span><span class="p">)</span> <span class="p">{</span>
-
-    <span class="c1">//private attribute: level of intelligence the player has</span>
-    <span class="kd">var</span> <span class="nx">levelOfIntelligence</span> <span class="o">=</span> <span class="nx">level</span><span class="p">;</span>
-
-    <span class="c1">//private attribute: the game the player is playing</span>
-    <span class="kd">var</span> <span class="nx">game</span> <span class="o">=</span> <span class="p">{};</span>
-
-    <span class="cm">/*
-     * private recursive function that computes the minimax value of a game state
-     * @param state [State] : the state to calculate its minimax value
-     * @returns [Number]: the minimax value of the state
-     */</span>
-    <span class="kd">function</span> <span class="nx">minimaxValue</span><span class="p">(</span><span class="nx">state</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
-
-    <span class="cm">/*
-     * private function: make the ai player take a blind move
-     * that is: choose the cell to place its symbol randomly
-     * @param turn [String]: the player to play, either X or O
-     */</span>
-    <span class="kd">function</span> <span class="nx">takeABlindMove</span><span class="p">(</span><span class="nx">turn</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
-
-    <span class="cm">/*
-     * private function: make the ai player take a novice move,
-     * that is: mix between choosing the optimal and suboptimal minimax decisions
-     * @param turn [String]: the player to play, either X or O
-     */</span>
-    <span class="kd">function</span> <span class="nx">takeANoviceMove</span><span class="p">(</span><span class="nx">turn</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
-
-    <span class="cm">/*
-     * private function: make the ai player take a master move,
-     * that is: choose the optimal minimax decision
-     * @param turn [String]: the player to play, either X or O
-     */</span>
-    <span class="kd">function</span> <span class="nx">takeAMasterMove</span><span class="p">(</span><span class="nx">turn</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
-
-
-    <span class="cm">/*
-     * public method to specify the game the ai player will play
-     * @param _game [Game] : the game the ai will play
-     */</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">plays</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">_game</span><span class="p">){</span>
-        <span class="nx">game</span> <span class="o">=</span> <span class="nx">_game</span><span class="p">;</span>
-    <span class="p">};</span>
-
-    <span class="cm">/*
-     * public function: notify the ai player that it's its turn
-     * @param turn [String]: the player to play, either X or O
-     */</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">notify</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">turn</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">switch</span><span class="p">(</span><span class="nx">levelOfIntelligence</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">//invoke the desired behavior based on the level chosen</span>
-            <span class="k">case</span> <span class="s2">"blind"</span><span class="p">:</span> <span class="nx">takeABlindMove</span><span class="p">(</span><span class="nx">turn</span><span class="p">);</span> <span class="k">break</span><span class="p">;</span>
-            <span class="k">case</span> <span class="s2">"novice"</span><span class="p">:</span> <span class="nx">takeANoviceMove</span><span class="p">(</span><span class="nx">turn</span><span class="p">);</span> <span class="k">break</span><span class="p">;</span>
-            <span class="k">case</span> <span class="s2">"master"</span><span class="p">:</span> <span class="nx">takeAMasterMove</span><span class="p">(</span><span class="nx">turn</span><span class="p">);</span> <span class="k">break</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">};</span>
-<span class="p">};</span>
-</code></pre></div></div>
-
-<h1 id="the-ai-actions">The AI Actions</h1>
-<p>To simpilfy the code for the AI decision making and moves, we can take the code that represents the available actions that the AI have and will reason about to another class outside the AI class. As we just said, it would simpler and better modular design for the project.</p>
-
-<p>We’ll need the AI action to hold two information: the position on the board that it’ll make its move on (remember that it’s a one-dimensional array index) and the minimax value of the state that this action will lead to (remember the minimax function ?). This minimax value will be the criteria at which the AI will chose its best available action. It won’t do any harm if we implemented the transition function into the action itself by making a public function that takes the current state, apply the action to it, and return the next state.</p>
-
-<p>Our AI action class would look like this:</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/*
- * Constructs an action that the ai player could make
- * @param pos [Number]: the cell position the ai would make its action in
- * made that action
- */</span>
-<span class="kd">var</span> <span class="nx">AIAction</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">pos</span><span class="p">)</span> <span class="p">{</span>
-
-    <span class="c1">// public : the position on the board that the action would put the letter on</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">movePosition</span> <span class="o">=</span> <span class="nx">pos</span><span class="p">;</span>
-
-    <span class="c1">//public : the minimax value of the state that the action leads to when applied</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">minimaxVal</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-
-    <span class="cm">/*
-     * public : applies the action to a state to get the next state
-     * @param state [State]: the state to apply the action to
-     * @return [State]: the next state
-     */</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">applyTo</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">state</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kd">var</span> <span class="nx">next</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">State</span><span class="p">(</span><span class="nx">state</span><span class="p">);</span>
-
-        <span class="c1">//put the letter on the board</span>
-        <span class="nx">next</span><span class="p">.</span><span class="nx">board</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">movePosition</span><span class="p">]</span> <span class="o">=</span> <span class="nx">state</span><span class="p">.</span><span class="nx">turn</span><span class="p">;</span>
-
-        <span class="k">if</span><span class="p">(</span><span class="nx">state</span><span class="p">.</span><span class="nx">turn</span> <span class="o">===</span> <span class="s2">"O"</span><span class="p">)</span>
-            <span class="nx">next</span><span class="p">.</span><span class="nx">oMovesCount</span><span class="o">++</span><span class="p">;</span>
-
-        <span class="nx">next</span><span class="p">.</span><span class="nx">advanceTurn</span><span class="p">();</span>
-
-        <span class="k">return</span> <span class="nx">next</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">};</span>
-</code></pre></div></div>
-
-<p>We said above that the AI uses the minimax value to choose the best action from a list of available actions, so it’s very reasonable to think that we’d need some way to sort the actions based on their minimax values. For that, we provide two public static functions that we can use as a compare function to pass to the javascript’s <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort">Array.prototype.sort</a> function to sort the list of actions in both ascending and descending manners.</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/*
- * public static method that defines a rule for sorting AIAction in ascending manner
- * @param firstAction [AIAction] : the first action in a pairwise sort
- * @param secondAction [AIAction]: the second action in a pairwise sort
- * @return [Number]: -1, 1, or 0
- */</span>
-<span class="nx">AIAction</span><span class="p">.</span><span class="nx">ASCENDING</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">firstAction</span><span class="p">,</span> <span class="nx">secondAction</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span><span class="p">(</span><span class="nx">firstAction</span><span class="p">.</span><span class="nx">minimaxVal</span> <span class="o">&lt;</span> <span class="nx">secondAction</span><span class="p">.</span><span class="nx">minimaxVal</span><span class="p">)</span>
-        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="c1">//indicates that firstAction goes before secondAction</span>
-    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">firstAction</span><span class="p">.</span><span class="nx">minimaxVal</span> <span class="o">&gt;</span> <span class="nx">secondAction</span><span class="p">.</span><span class="nx">minimaxVal</span><span class="p">)</span>
-        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">//indicates that secondAction goes before firstAction</span>
-    <span class="k">else</span>
-        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">//indicates a tie</span>
-<span class="p">}</span>
-
-<span class="cm">/*
- * public static method that defines a rule for sorting AIAction in descending manner
- * @param firstAction [AIAction] : the first action in a pairwise sort
- * @param secondAction [AIAction]: the second action in a pairwise sort
- * @return [Number]: -1, 1, or 0
- */</span>
-<span class="nx">AIAction</span><span class="p">.</span><span class="nx">DESCENDING</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">firstAction</span><span class="p">,</span> <span class="nx">secondAction</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span><span class="p">(</span><span class="nx">firstAction</span><span class="p">.</span><span class="nx">minimaxVal</span> <span class="o">&gt;</span> <span class="nx">secondAction</span><span class="p">.</span><span class="nx">minimaxVal</span><span class="p">)</span>
-        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="c1">//indicates that firstAction goes before secondAction</span>
-    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">firstAction</span><span class="p">.</span><span class="nx">minimaxVal</span> <span class="o">&lt;</span> <span class="nx">secondAction</span><span class="p">.</span><span class="nx">minimaxVal</span><span class="p">)</span>
-        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">//indicates that secondAction goes before firstAction</span>
-    <span class="k">else</span>
-        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">//indicates a tie</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<h1 id="the-game">The Game</h1>
-
-<p>This is the structure that will control the flow of the game and glue everything together in one functioning unit. In such a structure, we’d like to keep and access three kinds of information : the AI player who plays the game with the human, the current state of the game, and the status of the game (whether it’s running or ended), we’ll keep those as public attributes for easy access. We’d also need a way to move the game from one state to another as the playing continues, we can implement that with a public function that advances the game to a given state and checks if the game ends at this state and what is the result, if the game doesn’t end at this state, the function notifies the player who plays next to continue. Finally, we’d need a public function to start the game.</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/*
- * Constructs a game object to be played
- * @param autoPlayer [AIPlayer] : the AI player to be play the game with
- */</span>
-<span class="kd">var</span> <span class="nx">Game</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">autoPlayer</span><span class="p">)</span> <span class="p">{</span>
-
-    <span class="c1">//public : initialize the ai player for this game</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">ai</span> <span class="o">=</span> <span class="nx">autoPlayer</span><span class="p">;</span>
-
-    <span class="c1">// public : initialize the game current state to empty board configuration</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">currentState</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">State</span><span class="p">();</span>
-
-    <span class="c1">//"E" stands for empty board cell</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">currentState</span><span class="p">.</span><span class="nx">board</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"E"</span><span class="p">,</span> <span class="s2">"E"</span><span class="p">,</span> <span class="s2">"E"</span><span class="p">,</span>
-                               <span class="s2">"E"</span><span class="p">,</span> <span class="s2">"E"</span><span class="p">,</span> <span class="s2">"E"</span><span class="p">,</span>
-                               <span class="s2">"E"</span><span class="p">,</span> <span class="s2">"E"</span><span class="p">,</span> <span class="s2">"E"</span><span class="p">];</span>
-
-    <span class="k">this</span><span class="p">.</span><span class="nx">currentState</span><span class="p">.</span><span class="nx">turn</span> <span class="o">=</span> <span class="s2">"X"</span><span class="p">;</span> <span class="c1">//X plays first</span>
-
-    <span class="cm">/*
-     * initialize game status to beginning
-     */</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">status</span> <span class="o">=</span> <span class="s2">"beginning"</span><span class="p">;</span>
-
-    <span class="cm">/*
-     * public function that advances the game to a new state
-     * @param _state [State]: the new state to advance the game to
-     */</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">advanceTo</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">_state</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">currentState</span> <span class="o">=</span> <span class="nx">_state</span><span class="p">;</span>
-        <span class="k">if</span><span class="p">(</span><span class="nx">_state</span><span class="p">.</span><span class="nx">isTerminal</span><span class="p">())</span> <span class="p">{</span>
-            <span class="k">this</span><span class="p">.</span><span class="nx">status</span> <span class="o">=</span> <span class="s2">"ended"</span><span class="p">;</span>
-
-            <span class="k">if</span><span class="p">(</span><span class="nx">_state</span><span class="p">.</span><span class="nx">result</span> <span class="o">===</span> <span class="s2">"X-won"</span><span class="p">)</span>
-                <span class="c1">//X won</span>
-                <span class="nx">ui</span><span class="p">.</span><span class="nx">switchViewTo</span><span class="p">(</span><span class="s2">"won"</span><span class="p">);</span>
-            <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">_state</span><span class="p">.</span><span class="nx">result</span> <span class="o">===</span> <span class="s2">"O-won"</span><span class="p">)</span>
-                <span class="c1">//X lost</span>
-                <span class="nx">ui</span><span class="p">.</span><span class="nx">switchViewTo</span><span class="p">(</span><span class="s2">"lost"</span><span class="p">);</span>
-            <span class="k">else</span>
-                <span class="c1">//it's a draw</span>
-                <span class="nx">ui</span><span class="p">.</span><span class="nx">switchViewTo</span><span class="p">(</span><span class="s2">"draw"</span><span class="p">);</span>
-        <span class="p">}</span>
-        <span class="k">else</span> <span class="p">{</span>
-            <span class="c1">//the game is still running</span>
-
-            <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">currentState</span><span class="p">.</span><span class="nx">turn</span> <span class="o">===</span> <span class="s2">"X"</span><span class="p">)</span> <span class="p">{</span>
-                <span class="nx">ui</span><span class="p">.</span><span class="nx">switchViewTo</span><span class="p">(</span><span class="s2">"human"</span><span class="p">);</span>
-            <span class="p">}</span>
-            <span class="k">else</span> <span class="p">{</span>
-                <span class="nx">ui</span><span class="p">.</span><span class="nx">switchViewTo</span><span class="p">(</span><span class="s2">"robot"</span><span class="p">);</span>
-
-                <span class="c1">//notify the AI player its turn has come up</span>
-                <span class="k">this</span><span class="p">.</span><span class="nx">ai</span><span class="p">.</span><span class="nx">notify</span><span class="p">(</span><span class="s2">"O"</span><span class="p">);</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">};</span>
-
-    <span class="cm">/*
-     * starts the game
-     */</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">start</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">status</span> <span class="o">=</span> <span class="s2">"beginning"</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">//invoke advanceTo with the intial state</span>
-            <span class="k">this</span><span class="p">.</span><span class="nx">advanceTo</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">currentState</span><span class="p">);</span>
-            <span class="k">this</span><span class="p">.</span><span class="nx">status</span> <span class="o">=</span> <span class="s2">"running"</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-
-<span class="p">};</span>
-</code></pre></div></div>
-
-<h1 id="lets-do-some-ai">Let’s Do Some AI</h1>
-
-<p>It certainly feels like a long way from the beginning of the post till this point where we start working on the AI. This reflects how important is the formal definition phase along with planning and designing your modules and how they’re gonna talk to each other and work together. These phases are a lot of work, and some of this work could be boring, but when done right we’ll find ourselves at this point only worrying about the good stuff: the reasoning, the math, and the algorithms.</p>
-
-<h2 id="the-score-function"><strong>The Score Function</strong></h2>
-
-<p>We now take the first step in implementing our AI, which is implementing the score function. The score function is the way the AI can know the benefit of a specific action it can take. Basically, the AI will be asking itself through the minimaxValue function : <em>“Is this action is getting me a high score or a low score ?”</em>.</p>
-
-<p>So how can we calculate the score at a terminal state ?!</p>
-
-<p>Well, form our verbal description of the game we can see that the score is affected by two factors: the player winning or losing, and the number of moves the player makes to win. We make the AI’s job is to worsen X player’s life as much as possible. So we need to design a score function that makes O take decisions that results in X having as low score as possible.</p>
-
-<p>You might ask a question here: now the AI’s job is to annoy the X player and make him lose score, would that mean that the AI wouldn’t work to gain score itself ? Is it just going to be something with a grudge against the X player ?!</p>
-
-<p>Actually, the AI will be trying to make itself win by making X’s life hell. So it kills two birds with one stone !</p>
-
-<p>The reason behind this is that Tic-Tac-Toe is a game of a special kind, a kind called <strong>zero-sum games</strong>. In this type of games, the scores of all players sum to 0, which means that in a two-players game the score of one player is negative of the score of the other player, so if player 1 gets a score of 5 then player 2 gets a score of -5, making the sum of all scores to be 5 + (-5) = 0, hence : zero-sum game. Zero-sum games are pure competition games, there’s no cooperation of any kind between the players.</p>
-
-<p>Because Tic-Tac-Toe is a zero-sum game, the AI can spend all its life minimizing X’s score and at the same time be maximizing its score.</p>
-
-<p>So now we can design a score function that only calculates the score of X at a terminal state. If the AI plays with X (which is something that’s gonna occur in the tests), it can work on maximizing its value. On the other hand, If the AI plays with O (which is the case here), it works on minimizing its value.</p>
-
-<p>We can reason about such function in the following manner:</p>
-
-<ul>
-  <li>If X wins, we give him a score of 10 (just an arbitrary value), but O (the AI) shouldn’t make this easy to happen, it must fight, it shouldn’t surrender when it sees that it’s going to lose. So the AI should make as much moves as possible to force the X player to make more moves to win. So the total score for X should be : <strong><em>10 - oMovesCount</em></strong>.</li>
-  <li>If X loses, we give him a score of -10, and O should get to this state with the least possible number of moves while still making X’s score as low as possible. So we penalize any increase in the number of O moves by an increase in X’s score. So the total score for X should be : <strong><em>-10 + oMovesCount</em></strong></li>
-  <li>If the game is a draw, X’s total score should be : <strong><em>0</em></strong></li>
-</ul>
-
-<p>We now have our score function (which doesn’t need to keep track of X’s moves count as we said before):</p>
-
-<p align="ceneter"><img src="/assets/images/score_func.png" alt="Score Function" /></p>
-
-<p>We’ll implement this as a public static function of the Game class. We implement it in the Game class because it’s a game-related information, and static because it doesn’t depend on specific instances of the game.</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/*
- * public static function that calculates the score of the x player in a terminal state
- * @param _state [State]: the state in which the score is calculated
- * @return [Number]: the score calculated for the human player
- */</span>
-<span class="nx">Game</span><span class="p">.</span><span class="nx">score</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">_state</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span><span class="p">(</span><span class="nx">_state</span><span class="p">.</span><span class="nx">result</span> <span class="o">!==</span> <span class="s2">"still running"</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span><span class="p">(</span><span class="nx">_state</span><span class="p">.</span><span class="nx">result</span> <span class="o">===</span> <span class="s2">"X-won"</span><span class="p">){</span>
-            <span class="c1">// the x player won</span>
-            <span class="k">return</span> <span class="mi">10</span> <span class="o">-</span> <span class="nx">_state</span><span class="p">.</span><span class="nx">oMovesCount</span><span class="p">;</span>
-        <span class="p">}</span>
-        <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">_state</span><span class="p">.</span><span class="nx">result</span> <span class="o">===</span> <span class="s2">"O-won"</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">//the x player lost</span>
-            <span class="k">return</span> <span class="o">-</span><span class="mi">10</span> <span class="o">+</span> <span class="nx">_state</span><span class="p">.</span><span class="nx">oMovesCount</span><span class="p">;</span>
-        <span class="p">}</span>
-        <span class="k">else</span> <span class="p">{</span>
-            <span class="c1">//it's a draw</span>
-            <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<h2 id="the-minimax-algorithm"><strong>The Minimax Algorithm</strong></h2>
-
-<p>Now the AI needs a way to use the information provided by the score function in making an optimal decision, and this is where minimax comes to help. The Basic intuition behind the minimax decision algorithm is that at a given state, the AI will think about the possible moves it can make, and about the moves the opponent can make after that. This process continues until terminal states are reached (not in the actual game, but in the AI’s thought process). The AI then chooses the action that leads to the best possible terminal state according to its score.</p>
-
-<p>The algorithm is used to calculate the minimax value of a specific state (or the action that leads to that state), and it works by knowing that someone wants to <strong>mini</strong>mize the score function and the other wants to <strong>max</strong>imize the score function (and that’s why it’s called <strong>minimax</strong>). Suppose that O wants to calculate the minimax value of the action that leads it to the state at level 0 in the following figure:</p>
-
-<p align="center"><img src="/assets/images/tree.png" alt="minimax tree" /></p>
-
-<ul>
-  <li><strong>At Level 0</strong>: O wants to calculate the minimax value of that state, So it asks a question: What are X’s moves if I took the action to that state ?! To answer this question, it generates all the states that X can reach through all his possible actions (The states in Level 1).</li>
-  <li><strong>At Level 1</strong>: O Thinks about the moves it can make in response to each of X’s moves, so it generates all the states it can reach from there by all possible actions (The states in Level 2).</li>
-  <li><strong>At Level 2</strong>: Having all the states it can reach, O keeps thinking ahead and considers all of X’s moves he can take from there, so it generates all the states that X can reach through all his possible actions (The Terminal States).</li>
-  <li><strong>At Level 3 (Terminal States)</strong>: O now knows how the game could end, it knows all the possible configurations that the game could end into and have a tree with all the possible paths it could take (the tree in the figure).</li>
-</ul>
-
-<p>O now uses the score function to calculate the score of each terminal state it can reach (the orange numbers above each state in the figure). After that, it starts climbing the tree up to the root state ,which is the state we started off to calculate its minimax value.</p>
-
-<ul>
-  <li><strong>At Level 2</strong>: O knows that X is the one playing next at this level. It also knows that at each possible state at this level, X will choose to go to the child state (at Level 3) with the largest score. So O backs up the minimax value of each state at Level 2 with the maximum score of its child states.</li>
-  <li><strong>At Level 1</strong>: O knows that it’s its turn to play at this level. It wants to choose a child state (from Level 2) that makes X’s score as low as possible. So O backs up the minimax value of each state at level 1 with the minimumm minimax value of its child states.</li>
-  <li><strong>At Level 0</strong>: O follows the same reasoning it followed at level 2. It backs up the minmax value of the root state with the maximum minimax value of its child states (the ones at level 1).</li>
-</ul>
-
-<p>The algorithm now terminates and returns the minimax value of the desired state to be <strong>0</strong>.</p>
-
-<p>It now obvious that the minimax algorithm is a recursive algorithm and its base case is reaching a terminal state. We can implement it with a recursive function that recurs down to the terminal states, and backs up the minimax value as the recursion unwinds.</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/*
- * private recursive function that computes the minimax value of a game state
- * @param state [State] : the state to calculate its minimax value
- * @returns [Number]: the minimax value of the state
- */</span>
-<span class="kd">function</span> <span class="nx">minimaxValue</span><span class="p">(</span><span class="nx">state</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span><span class="p">(</span><span class="nx">state</span><span class="p">.</span><span class="nx">isTerminal</span><span class="p">())</span> <span class="p">{</span>
-        <span class="c1">//a terminal game state is the base case</span>
-        <span class="k">return</span> <span class="nx">Game</span><span class="p">.</span><span class="nx">score</span><span class="p">(</span><span class="nx">state</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="k">else</span> <span class="p">{</span>
-        <span class="kd">var</span> <span class="nx">stateScore</span><span class="p">;</span> <span class="c1">// this stores the minimax value we'll compute</span>
-
-        <span class="k">if</span><span class="p">(</span><span class="nx">state</span><span class="p">.</span><span class="nx">turn</span> <span class="o">===</span> <span class="s2">"X"</span><span class="p">)</span>
-        <span class="c1">// X maximizs --&gt; initialize to a value smaller than any possible score</span>
-            <span class="nx">stateScore</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1000</span><span class="p">;</span>
-        <span class="k">else</span>
-        <span class="c1">// O minimizes --&gt; initialize to a value larger than any possible score</span>
-            <span class="nx">stateScore</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>
-
-        <span class="kd">var</span> <span class="nx">availablePositions</span> <span class="o">=</span> <span class="nx">state</span><span class="p">.</span><span class="nx">emptyCells</span><span class="p">();</span>
-
-        <span class="c1">//enumerate next available states using the info form available positions</span>
-        <span class="kd">var</span> <span class="nx">availableNextStates</span> <span class="o">=</span> <span class="nx">availablePositions</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">pos</span><span class="p">)</span> <span class="p">{</span>
-            <span class="kd">var</span> <span class="nx">action</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AIAction</span><span class="p">(</span><span class="nx">pos</span><span class="p">);</span>
-
-            <span class="kd">var</span> <span class="nx">nextState</span> <span class="o">=</span> <span class="nx">action</span><span class="p">.</span><span class="nx">applyTo</span><span class="p">(</span><span class="nx">state</span><span class="p">);</span>
-
-            <span class="k">return</span> <span class="nx">nextState</span><span class="p">;</span>
-        <span class="p">});</span>
-
-        <span class="cm">/* calculate the minimax value for all available next states
-         * and evaluate the current state's value */</span>
-        <span class="nx">availableNextStates</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">nextState</span><span class="p">)</span> <span class="p">{</span>
-
-            <span class="kd">var</span> <span class="nx">nextScore</span> <span class="o">=</span> <span class="nx">minimaxValue</span><span class="p">(</span><span class="nx">nextState</span><span class="p">);</span> <span class="c1">//recursive call</span>
-
-            <span class="k">if</span><span class="p">(</span><span class="nx">state</span><span class="p">.</span><span class="nx">turn</span> <span class="o">===</span> <span class="s2">"X"</span><span class="p">)</span> <span class="p">{</span>
-                <span class="c1">// X wants to maximize --&gt; update stateScore iff nextScore is larger</span>
-                <span class="k">if</span><span class="p">(</span><span class="nx">nextScore</span> <span class="o">&gt;</span> <span class="nx">stateScore</span><span class="p">)</span>
-                    <span class="nx">stateScore</span> <span class="o">=</span> <span class="nx">nextScore</span><span class="p">;</span>
-                <span class="p">}</span>
-            <span class="k">else</span> <span class="p">{</span>
-                <span class="c1">// O wants to minimize --&gt; update stateScore iff nextScore is smaller</span>
-                <span class="k">if</span><span class="p">(</span><span class="nx">nextScore</span> <span class="o">&lt;</span> <span class="nx">stateScore</span><span class="p">)</span>
-                    <span class="nx">stateScore</span> <span class="o">=</span> <span class="nx">nextScore</span><span class="p">;</span>
-            <span class="p">}</span>
-        <span class="p">});</span>
-
-        <span class="c1">//backup the minimax value</span>
-        <span class="k">return</span> <span class="nx">stateScore</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<h2 id="a-master-move"><strong>A Master Move</strong></h2>
-
-<p>Now it’s time to take some decisions. Using the minimax algorithm, taking an optimal decision is a trivial process:</p>
-
-<ol>
-  <li>Enumerate all the possible action that could be taking.</li>
-  <li>Calculate the minimax value of each action (that is the minimax value of the state that each action leads to).</li>
-  <li>If X is the one who is taking the decision: choose the action with the maximum minimax value. Go to 5.</li>
-  <li>If O is the one who is taking the decision: choose the action with the minimum minimax value. Go to 5.</li>
-  <li>Carry out the chosen action.</li>
-</ol>
-
-<p>A player who always plays the optimal move is by no doubt a master player. So we implement our <strong>takeAMasterMove</strong> function to allow the AI to always choose the optimal action. This the most difficult level of the game, as it can be proven that a player that plays optimally all the time cannot lose. Your best chance at this level is leading the game to a draw, otherwise you’ll lose.</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/*
- * private function: make the ai player take a master move,
- * that is: choose the optimal minimax decision
- * @param turn [String]: the player to play, either X or O
- */</span>
-<span class="kd">function</span> <span class="nx">takeAMasterMove</span><span class="p">(</span><span class="nx">turn</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">available</span> <span class="o">=</span> <span class="nx">game</span><span class="p">.</span><span class="nx">currentState</span><span class="p">.</span><span class="nx">emptyCells</span><span class="p">();</span>
-
-    <span class="c1">//enumerate and calculate the score for each avaialable actions to the ai player</span>
-    <span class="kd">var</span> <span class="nx">availableActions</span> <span class="o">=</span> <span class="nx">available</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">pos</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kd">var</span> <span class="nx">action</span> <span class="o">=</span>  <span class="k">new</span> <span class="nx">AIAction</span><span class="p">(</span><span class="nx">pos</span><span class="p">);</span> <span class="c1">//create the action object</span>
-
-        <span class="c1">//get next state by applying the action</span>
-        <span class="kd">var</span> <span class="nx">next</span> <span class="o">=</span> <span class="nx">action</span><span class="p">.</span><span class="nx">applyTo</span><span class="p">(</span><span class="nx">game</span><span class="p">.</span><span class="nx">currentState</span><span class="p">);</span>
-
-        <span class="c1">//calculate and set the action's minmax value</span>
-        <span class="nx">action</span><span class="p">.</span><span class="nx">minimaxVal</span> <span class="o">=</span> <span class="nx">minimaxValue</span><span class="p">(</span><span class="nx">next</span><span class="p">);</span>
-
-        <span class="k">return</span> <span class="nx">action</span><span class="p">;</span>
-    <span class="p">});</span>
-
-    <span class="c1">//sort the enumerated actions list by score</span>
-    <span class="k">if</span><span class="p">(</span><span class="nx">turn</span> <span class="o">===</span> <span class="s2">"X"</span><span class="p">)</span>
-        <span class="c1">//X maximizes --&gt; descend sort the actions to have the largest minimax at first</span>
-        <span class="nx">availableActions</span><span class="p">.</span><span class="nx">sort</span><span class="p">(</span><span class="nx">AIAction</span><span class="p">.</span><span class="nx">DESCENDING</span><span class="p">);</span>
-    <span class="k">else</span>
-        <span class="c1">//O minimizes --&gt; acend sort the actions to have the smallest minimax at first</span>
-        <span class="nx">availableActions</span><span class="p">.</span><span class="nx">sort</span><span class="p">(</span><span class="nx">AIAction</span><span class="p">.</span><span class="nx">ASCENDING</span><span class="p">);</span>
-
-
-    <span class="c1">//take the first action as it's the optimal</span>
-    <span class="kd">var</span> <span class="nx">chosenAction</span> <span class="o">=</span> <span class="nx">availableActions</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
-    <span class="kd">var</span> <span class="nx">next</span> <span class="o">=</span> <span class="nx">chosenAction</span><span class="p">.</span><span class="nx">applyTo</span><span class="p">(</span><span class="nx">game</span><span class="p">.</span><span class="nx">currentState</span><span class="p">);</span>
-
-    <span class="c1">// this just adds an X or an O at the chosen position on the board in the UI</span>
-    <span class="nx">ui</span><span class="p">.</span><span class="nx">insertAt</span><span class="p">(</span><span class="nx">chosenAction</span><span class="p">.</span><span class="nx">movePosition</span><span class="p">,</span> <span class="nx">turn</span><span class="p">);</span>
-
-    <span class="c1">// take the game to the next state</span>
-    <span class="nx">game</span><span class="p">.</span><span class="nx">advanceTo</span><span class="p">(</span><span class="nx">next</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<h2 id="a-novice-move"><strong>A Novice Move</strong></h2>
-
-<p>A Novice player is a player who sometimes takes the optimal move and some other time he takes a sub-optimal move. We could model that with a probability, like saying that it takes the optimal move 40% of the time and the sub-optimal move 60% of the time.</p>
-
-<p>Coding a probability might seem like a challenging task if you didn’t do it before (at least it did to me), but it turns out that it’s a very simple task : If you want to execute a statement P percent of the time, just generate a random number between 0 and 100. You only execute that statement if the generated random number is less than or equal to P.</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">P</span> <span class="o">=</span> <span class="mi">40</span><span class="p">;</span> <span class="c1">//some probability in percent form</span>
-<span class="k">if</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="o">*</span><span class="mi">100</span> <span class="o">&lt;=</span> <span class="nx">P</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// carry out the probable task with probability P</span>
-<span class="p">}</span>
-<span class="k">else</span> <span class="p">{</span>
-   <span class="c1">// carry out the other probable task with probability 1 - P</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<p>Probabilities and randomness is the way used in most entertainment games to make the games playable and with some variance in the AI actions during the game. Imagine playing Call of Duty with an AI that manages to always make headshots with no misses at all, such a game wouldn’t be playable and unrealistic. This is where probability comes and add some small probablity that the AI headshots, with a large probability for regular shots and misses. In our game, we’ll use probablity to make the AI miss the optimal move for 60% of the time, and make it for 40% of the time.</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/*
- * private function: make the ai player take a novice move,
- * that is: mix between choosing the optimal and suboptimal minimax decisions
- * @param turn [String]: the player to play, either X or O
- */</span>
-<span class="kd">function</span> <span class="nx">takeANoviceMove</span><span class="p">(</span><span class="nx">turn</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">available</span> <span class="o">=</span> <span class="nx">game</span><span class="p">.</span><span class="nx">currentState</span><span class="p">.</span><span class="nx">emptyCells</span><span class="p">();</span>
-
-    <span class="c1">//enumerate and calculate the score for each available actions to the ai player</span>
-    <span class="kd">var</span> <span class="nx">availableActions</span> <span class="o">=</span> <span class="nx">available</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">pos</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kd">var</span> <span class="nx">action</span> <span class="o">=</span>  <span class="k">new</span> <span class="nx">AIAction</span><span class="p">(</span><span class="nx">pos</span><span class="p">);</span> <span class="c1">//create the action object</span>
-
-        <span class="c1">//get next state by applying the action</span>
-        <span class="kd">var</span> <span class="nx">nextState</span> <span class="o">=</span> <span class="nx">action</span><span class="p">.</span><span class="nx">applyTo</span><span class="p">(</span><span class="nx">game</span><span class="p">.</span><span class="nx">currentState</span><span class="p">);</span>
-
-        <span class="c1">//calculate and set the action's minimax value</span>
-        <span class="nx">action</span><span class="p">.</span><span class="nx">minimaxVal</span> <span class="o">=</span> <span class="nx">minimaxValue</span><span class="p">(</span><span class="nx">nextState</span><span class="p">);</span>
-
-        <span class="k">return</span> <span class="nx">action</span><span class="p">;</span>
-    <span class="p">});</span>
-
-    <span class="c1">//sort the enumerated actions list by score</span>
-    <span class="k">if</span><span class="p">(</span><span class="nx">turn</span> <span class="o">===</span> <span class="s2">"X"</span><span class="p">)</span>
-        <span class="c1">//X maximizes --&gt; decend sort the actions to have the maximum minimax at first</span>
-        <span class="nx">availableActions</span><span class="p">.</span><span class="nx">sort</span><span class="p">(</span><span class="nx">AIAction</span><span class="p">.</span><span class="nx">DESCENDING</span><span class="p">);</span>
-    <span class="k">else</span>
-        <span class="c1">//O minimizes --&gt; ascend sort the actions to have the minimum minimax at first</span>
-        <span class="nx">availableActions</span><span class="p">.</span><span class="nx">sort</span><span class="p">(</span><span class="nx">AIAction</span><span class="p">.</span><span class="nx">ASCENDING</span><span class="p">);</span>
-
-
-    <span class="cm">/*
-     * take the optimal action 40% of the time
-     * take the 1st suboptimal action 60% of the time
-     */</span>
-    <span class="kd">var</span> <span class="nx">chosenAction</span><span class="p">;</span>
-    <span class="k">if</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="o">*</span><span class="mi">100</span> <span class="o">&lt;=</span> <span class="mi">40</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">chosenAction</span> <span class="o">=</span> <span class="nx">availableActions</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
-    <span class="p">}</span>
-    <span class="k">else</span> <span class="p">{</span>
-        <span class="k">if</span><span class="p">(</span><span class="nx">availableActions</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">//if there is two or more available actions, choose the 1st suboptimal</span>
-            <span class="nx">chosenAction</span> <span class="o">=</span> <span class="nx">availableActions</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
-        <span class="p">}</span>
-        <span class="k">else</span> <span class="p">{</span>
-            <span class="c1">//choose the only available actions</span>
-            <span class="nx">chosenAction</span> <span class="o">=</span> <span class="nx">availableActions</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="kd">var</span> <span class="nx">next</span> <span class="o">=</span> <span class="nx">chosenAction</span><span class="p">.</span><span class="nx">applyTo</span><span class="p">(</span><span class="nx">game</span><span class="p">.</span><span class="nx">currentState</span><span class="p">);</span>
-
-    <span class="nx">ui</span><span class="p">.</span><span class="nx">insertAt</span><span class="p">(</span><span class="nx">chosenAction</span><span class="p">.</span><span class="nx">movePosition</span><span class="p">,</span> <span class="nx">turn</span><span class="p">);</span>
-
-    <span class="nx">game</span><span class="p">.</span><span class="nx">advanceTo</span><span class="p">(</span><span class="nx">next</span><span class="p">);</span>
-<span class="p">};</span>
-</code></pre></div></div>
-
-<h2 id="a-blind-move"><strong>A Blind Move</strong></h2>
-
-<p>We assume that a blind player is a player who doesn’t know anything about the game and doesn’t have the ability to reason about the which action is the better than the other. A blind player chooses his actions randomly all the time, and this is the easiest level of the game.</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/*
- * private function: make the ai player take a blind move
- * that is: choose the cell to place its symbol randomly
- * @param turn [String]: the player to play, either X or O
- */</span>
-<span class="kd">function</span> <span class="nx">takeABlindMove</span><span class="p">(</span><span class="nx">turn</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">available</span> <span class="o">=</span> <span class="nx">game</span><span class="p">.</span><span class="nx">currentState</span><span class="p">.</span><span class="nx">emptyCells</span><span class="p">();</span>
-    <span class="kd">var</span> <span class="nx">randomCell</span> <span class="o">=</span> <span class="nx">available</span><span class="p">[</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="nx">available</span><span class="p">.</span><span class="nx">length</span><span class="p">)];</span>
-    <span class="kd">var</span> <span class="nx">action</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AIAction</span><span class="p">(</span><span class="nx">randomCell</span><span class="p">);</span>
-
-    <span class="kd">var</span> <span class="nx">next</span> <span class="o">=</span> <span class="nx">action</span><span class="p">.</span><span class="nx">applyTo</span><span class="p">(</span><span class="nx">game</span><span class="p">.</span><span class="nx">currentState</span><span class="p">);</span>
-
-    <span class="nx">ui</span><span class="p">.</span><span class="nx">insertAt</span><span class="p">(</span><span class="nx">randomCell</span><span class="p">,</span> <span class="nx">turn</span><span class="p">);</span>
-
-    <span class="nx">game</span><span class="p">.</span><span class="nx">advanceTo</span><span class="p">(</span><span class="nx">next</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<h1 id="how-difficult-is-each-difficulty-">How difficult is each difficulty ?</h1>
-
-<p>We know that the master level is the hardest level in the game. We can easily say that because, as we mentioned earlier, it can be formally proven that a player playing optimally all the time cannot lose.</p>
-
-<p>But can we make the same statements about each of the other two levels, can we say that the novice level is harder than the blind level ?!</p>
-
-<p>We can informally say that becuase the novice player has some understanding of the game and knows how to reason about the game, it’s a better player than a blind one who understands nothing about the game and doesn’t know how to reason about it. So, informally, Novice level is harder than blind level.</p>
-
-<p>Formally asserting that statement about the novice and blind levels can be difficult and cumbersome because of the probability and randomness involved in both levels, but we can assert it statistically. A good idea is to have a lot of games (say 1000) played against each of the two levels and count the number of games won (in 3, 4 and 5 moves), and the number of games lost in both cases. We then see what these data tell us. A very bad idea is to play the 1000 games yourself !</p>
-
-<p>This is where the code in tests come in. Without getting into the detailed implementation , the idea is two make two AIs play 1000 games against each other and automatically collect the data we specified above. This is much faster and efficient than playing the 1000 games yourself.</p>
-
-<p>The following chart represents the data about a novice X player’s results in 1000 games against a blind O player, and 1000 games against a novice O player.</p>
-
-<iframe width="800" height="600" frameborder="0" seamless="seamless" scrolling="no" src="https://plot.ly/~mostafa_samir/17.embed?width=800&amp;height=600"></iframe>
-
-<p>From the chart we can see that when playing with novice, the number of wins in 3 and 4 moves are getting smaller while the number of wins in 5 moves gets higher. This means that it’s more difficult for X to win in low number of moves when playing with novice than playing with blind. Moreover, the number of lost and draw games gets higher while playing against novice, which means that it’s harder for X to win while playing against novice than playing against blind. All this statistically tell us the novice is indeed harder than blind.</p>
-
-<h1 id="phew-">Phew !</h1>
-
-<p>We Finally come to the end of this. It was a long ride. I tried to not cover only the AI work, but the whole process of developing a working AI application. You should now be able to build the project successfully, and I strongly suggest that you try and apply the same reasoning (or make better reasoning) on other games. Remember that the whole project is on <a href="https://github.com/Mostafa-Samir/Tic-Tac-Toe-AI">this Github repo</a>.</p>
-
-<p>Thanks for reading !</p>
-
+                
             </article>
 
             <section class="share">
     <h3>Share</h3>
-    <a aria-label="Share on Twitter" href="https://twitter.com/intent/tweet?text=&quot;&quot;%20http://ahmedmadbouly.github.io/Tic-Tac-Toe-AI/%20via%20&#64;AhmedMadpouly&hashtags="
+    <a aria-label="Share on Twitter" href="https://twitter.com/intent/tweet?text=&quot;&quot;%20http://localhost:3000/Tic-Tac-Toe-AI/%20via%20&#64;AhmedMadpouly&hashtags="
     onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" title="Share on Twitter">
         <svg class="icon icon-twitter"><use xlink:href="#icon-twitter"></use></svg>
     </a>
-    <a aria-label="Share on Facebook"href="https://www.facebook.com/sharer/sharer.php?u=http://ahmedmadbouly.github.io/Tic-Tac-Toe-AI/"
+    <a aria-label="Share on Facebook"href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:3000/Tic-Tac-Toe-AI/"
     onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" title="Share on Facebook">
         <svg class="icon icon-facebook"><use xlink:href="#icon-facebook"></use></svg>
     </a>
-    <a aria-label="Share on Google Plus" href="https://plus.google.com/share?url=http://ahmedmadbouly.github.io/Tic-Tac-Toe-AI/"
+    <a aria-label="Share on Google Plus" href="https://plus.google.com/share?url=http://localhost:3000/Tic-Tac-Toe-AI/"
     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" title="Share on Google+">
         <svg class="icon icon-google-plus"><use xlink:href="#icon-google-plus"></use></svg>
     </a>
 </section>
             <section class="author" itemprop="author">
     <div class="details" itemscope itemtype="http://schema.org/Person">
-        <img itemprop="image" class="img-rounded" src="/assets/img/blog-author.jpg" alt="Ahmed Madbouly">
+        <img itemprop="image" class="img-rounded" src="/assets/img/blog-author.png" alt="Ahmed Madbouly">
         <p class="def">Author</p>
         <h3 class="name">
-            <a itemprop="name" href="https://plus.google.com//posts">Ahmed Madbouly</a>
+            <a>Ahmed Madbouly</a>
         </h3>
         <p class="desc">Wandering in a lifelong journey seeking after truth ...</p>
-        <a itemprop="email" class="email" href="mailto:ahmedmadbouly88@yahoo.com">ahmedmadbouly88@yahoo.com</a>
     </div>
 </section>
 
@@ -874,7 +170,7 @@ A player should try to win in the lowest possible number of moves.</p>
     var disqus_loaded = false;
 
     function disqus_config() {
-        this.page.url = 'http://ahmedmadbouly.github.io' + '/Tic-Tac-Toe-AI/';
+        this.page.url = 'http://localhost:3000' + '/Tic-Tac-Toe-AI/';
         this.page.identifier = '/Tic-Tac-Toe-AI';
         this.page.title = 'Building a Tic-Tac-Toe AI with Javascript';
     }
@@ -904,4 +200,27 @@ A player should try to win in the lowest possible number of moves.</p>
 
         </section>
     </body>
+    <div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://ahmed-madbouly.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                            
 </html>
+
+

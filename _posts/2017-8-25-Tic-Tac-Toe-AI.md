@@ -704,4 +704,4 @@ From the chart we can see that when playing with novice, the number of wins in 3
 
 We Finally come to the end of this. It was a long ride. I tried to not cover only the AI work, but the whole process of developing a working AI application. You should now be able to build the project successfully, and I strongly suggest that you try and apply the same reasoning (or make better reasoning) on other games. Remember that the whole project is on [this Github repo](https://github.com/Mostafa-Samir/Tic-Tac-Toe-AI).
 
-Thanks for reading !  
+Thanks for reading !

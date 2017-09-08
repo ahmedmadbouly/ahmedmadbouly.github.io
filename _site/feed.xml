@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ahmed Madbouly's Blog</title>
+    <description>A developer in a lifelong journey seeking after truth.</description>
+    <link>http://localhost:3000/</link>
+    <atom:link href="http://localhost:3000/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Fri, 08 Sep 2017 08:40:31 +0200</pubDate>
+    <lastBuildDate>Fri, 08 Sep 2017 08:40:31 +0200</lastBuildDate>
+    <generator>Jekyll v3.6.0.pre.beta1</generator>
+    
+      <item>
+        <title>Building a Tic-Tac-Toe AI with Javascript</title>
+        <description>&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;/assets/images/ai_tic_tac_toe_header.png&quot; alt=&quot;Tic-Tac-Toe AI&quot; /&gt; &lt;/p&gt; &lt;p&gt;When we say the word &lt;strong&gt;game&lt;/strong&gt; in the context of AI we usually don’t mean it in the sense of entertainment games, instead we refer to a more general definition of a game:&lt;/p&gt; &lt;blockquote&gt; &lt;p&gt;A game is a multi-agent environment in which agents compete and/or cooperate on some specific task(s) while meeting some specific criteria. An agent is referred to as a player.&lt;/p&gt; &lt;/blockquote&gt; &lt;p&gt;With this general definition we could see that a situation, like driving your car to a specific place, is a game. In such a situation, you (as a...</description>
+        <pubDate>Fri, 25 Aug 2017 00:00:00 +0200</pubDate>
+        <link>http://localhost:3000/Tic-Tac-Toe-AI/</link>
+        <guid isPermaLink="true">http://localhost:3000/Tic-Tac-Toe-AI/</guid>
+        
+        
+        <category>artificial intelligence</category>
+        
+        <category>javascript</category>
+        
+      </item>
+    
+  </channel>
+</rss>
