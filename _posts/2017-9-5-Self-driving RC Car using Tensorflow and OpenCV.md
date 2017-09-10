@@ -4,7 +4,7 @@ categories: [Artificial Intelligence, OpenCV , Tensorflow]
 title: Self-driving RC Car using Tensorflow and OpenCV
 ---
 
-<p align='center'> <img src = '{{site.baseurl}}/assets/img/car.jpg' alt = 'Tic-Tac-Toe AI'/> </p>
+<p align='center'> <img src = '{{site.baseurl}}/assets/img/car.jpg'/> </p>
 
 
 If there's one topic that gets a lot of attention lately in the media, the public policy sphere, and in general health and wellness discussions, it is how to make the **<font color="red">roadways safer</font>** According to the **Centers for Disease Control**, fatalities from traffic incidents happen on an annual basis upwards of 33,000 people. Many of these accidents are preventable, and an alarming number of them are a result of distracted driving.
@@ -25,14 +25,22 @@ If there's one topic that gets a lot of attention lately in the media, the publi
 #### 1 - Finding Lane Lines
 <p align='center'> <img src = '{{site.baseurl}}/assets/img/car1.gif'> </p>
 
+[Code](https://github.com/ahmedmadbouly/amd/blob/master/solution1.ipynb)
+
 #### 2 - Advanced Lane Finding
 <p align='center'> <img src = '{{site.baseurl}}/assets/img/car2.gif'> </p>
+
+[Code](https://github.com/ahmedmadbouly/amd/blob/master/model.py)
 
 #### 3 - Behavioral Cloning
 <p align='center'> <img src = '{{site.baseurl}}/assets/img/car3.gif'> </p>
 
+[Code](https://github.com/ahmedmadbouly/amd/blob/master/load_data.py)
+
 #### 4 - Vehicle Detection
 <p align='center'> <img src = '{{site.baseurl}}/assets/img/car4.gif'> </p>
+
+[Code](https://github.com/ahmedmadbouly/amd/blob/master/solution.ipynb)
 
 
 # Project
@@ -344,6 +352,8 @@ if (args.indexOf("noArduino") == -1) {
 }
 
 ```
+
+whole project is on [this Github repo](https://github.com/ahmedmadbouly/amd)
 
 
 
