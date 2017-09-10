@@ -1,6 +1,6 @@
 ---
 layout: post
-categories: [artificial intelligence, javascript]
+categories: [Artificial Intelligence, Javascript]
 title: Building a Tic-Tac-Toe AI with Javascript
 ---
 
@@ -17,7 +17,7 @@ We can easily see that entertainment games also fall under the general definitio
 
 We’ll be working with Tic-Tac-Toe as our demonstration game mainly because of its simplicity. It has simple rules, simple actions, and simple ending configurations, which makes it easy to describe it computationally.
 
-At the end of this post, you should have a working Tic-Tac-Toe game like the one [here]({{site.baseurl}}/projects/tic-tac-toe-ai). I'll be focusing entirely on the game representation code and the AI code. I’ll not talk about any UI code or any of the tests code, but these are fully commented and easy to understand when read. The whole project including the tests is available at [Github](https://github.com/Mostafa-Samir/Tic-Tac-Toe-AI).
+At the end of this post, you should have a working Tic-Tac-Toe game like the one [here]({{site.baseurl}}/projects/tic-tac-toe-ai). I'll be focusing entirely on the game representation code and the AI code. I’ll not talk about any UI code or any of the tests code, but these are fully commented and easy to understand when read. The whole project including the tests is available at [Github].
 
 The first thing we need to do is to describe and understand the game we want to build. We could describe it verbally as follows:
 
@@ -164,7 +164,7 @@ var State = function(old) {
 
 # The Human Player
 
-We move on to the next element of our definition, which is the players. Our first player will be the human player, which we will represent and implement along with its actions through the UI and its controls. We won't dive into that like we said earlier, but it's very easy to understand by reading the code directly; it's basically a jQuery click event handler on the grid cells that reads the current game state and update it by the performed move. You can read it off the **control.js** file in the [repo](https://github.com/Mostafa-Samir/Tic-Tac-Toe-AI).
+We move on to the next element of our definition, which is the players. Our first player will be the human player, which we will represent and implement along with its actions through the UI and its controls. We won't dive into that like we said earlier, but it's very easy to understand by reading the code directly; it's basically a jQuery click event handler on the grid cells that reads the current game state and update it by the performed move. You can read it off the **control.js** file in the [repo].
 
 # The AI Player
 
@@ -702,6 +702,6 @@ From the chart we can see that when playing with novice, the number of wins in 3
 
 # Phew !
 
-We Finally come to the end of this. It was a long ride. I tried to not cover only the AI work, but the whole process of developing a working AI application. You should now be able to build the project successfully, and I strongly suggest that you try and apply the same reasoning (or make better reasoning) on other games. Remember that the whole project is on [this Github repo](https://github.com/Mostafa-Samir/Tic-Tac-Toe-AI).
+We Finally come to the end of this. It was a long ride. I tried to not cover only the AI work, but the whole process of developing a working AI application. You should now be able to build the project successfully, and I strongly suggest that you try and apply the same reasoning (or make better reasoning) on other games. Remember that the whole project is on [this Github repo].
 
 Thanks for reading !

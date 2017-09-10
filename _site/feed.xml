@@ -5,9 +5,25 @@
     <description>A developer in a lifelong journey seeking after truth.</description>
     <link>http://ahmedmadbouly.github.io/</link>
     <atom:link href="http://ahmedmadbouly.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 08 Sep 2017 09:55:06 +0200</pubDate>
-    <lastBuildDate>Fri, 08 Sep 2017 09:55:06 +0200</lastBuildDate>
+    <pubDate>Sun, 10 Sep 2017 09:17:06 +0200</pubDate>
+    <lastBuildDate>Sun, 10 Sep 2017 09:17:06 +0200</lastBuildDate>
     <generator>Jekyll v3.6.0.pre.beta1</generator>
+    
+      <item>
+        <title>Self-driving RC Car using Tensorflow and OpenCV</title>
+        <description>&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;/assets/img/car.jpg&quot; alt=&quot;Tic-Tac-Toe AI&quot; /&gt; &lt;/p&gt; &lt;p&gt;If there’s one topic that gets a lot of attention lately in the media, the public policy sphere, and in general health and wellness discussions, it is how to make the &lt;strong&gt;&lt;font color=&quot;red&quot;&gt;roadways safer&lt;/font&gt;&lt;/strong&gt; According to the &lt;strong&gt;Centers for Disease Control&lt;/strong&gt;, fatalities from traffic incidents happen on an annual basis upwards of 33,000 people. Many of these accidents are preventable, and an alarming number of them are a result of distracted driving.&lt;/p&gt; &lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;/assets/img/car01.png&quot; /&gt; &lt;/p&gt; &lt;h2 id=&quot;why-self-driving-cars&quot;&gt;Why Self-Driving Cars?&lt;/h2&gt; &lt;blockquote&gt; &lt;p&gt;&lt;b&gt;Safety&lt;/b&gt;&lt;/p&gt; &lt;/blockquote&gt; &lt;blockquote&gt; &lt;p&gt;&lt;b&gt;Convenience&lt;/b&gt;&lt;/p&gt; &lt;/blockquote&gt; &lt;blockquote&gt; &lt;p&gt;&lt;b&gt;Efficiency&lt;/b&gt;&lt;/p&gt; &lt;/blockquote&gt; &lt;blockquote&gt;...</description>
+        <pubDate>Tue, 05 Sep 2017 00:00:00 +0200</pubDate>
+        <link>http://ahmedmadbouly.github.io/Self-driving-RC-Car-using-Tensorflow-and-OpenCV/</link>
+        <guid isPermaLink="true">http://ahmedmadbouly.github.io/Self-driving-RC-Car-using-Tensorflow-and-OpenCV/</guid>
+        
+        
+        <category>Artificial Intelligence</category>
+        
+        <category>OpenCV</category>
+        
+        <category>Tensorflow</category>
+        
+      </item>
     
       <item>
         <title>Building a Tic-Tac-Toe AI with Javascript</title>
@@ -17,9 +33,9 @@
         <guid isPermaLink="true">http://ahmedmadbouly.github.io/Tic-Tac-Toe-AI/</guid>
         
         
-        <category>artificial intelligence</category>
+        <category>Artificial Intelligence</category>
         
-        <category>javascript</category>
+        <category>Javascript</category>
         
       </item>
     

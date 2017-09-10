@@ -1,8 +1,16 @@
 [
   
     {
+      "title"    : "Self-driving RC Car using Tensorflow and OpenCV",
+      "category" : "Artificial IntelligenceOpenCVTensorflow",
+      "tags"     : "",
+      "url"      : "/Self-driving-RC-Car-using-Tensorflow-and-OpenCV/",
+      "date"     : "05 Sep 2017"
+    } ,
+  
+    {
       "title"    : "Building a Tic-Tac-Toe AI with Javascript",
-      "category" : "artificial intelligencejavascript",
+      "category" : "Artificial IntelligenceJavascript",
       "tags"     : "",
       "url"      : "/Tic-Tac-Toe-AI/",
       "date"     : "25 Aug 2017"
