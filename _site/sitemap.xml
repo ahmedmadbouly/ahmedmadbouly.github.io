@@ -2,11 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	
 	  <url>
-		<loc>http://ahmedmadbouly.github.io/Self-driving-RC-Car-using-Tensorflow-and-OpenCV/</loc>
+		<loc>http://localhost:4000/Self-driving-RC-Car-using-Tensorflow-and-OpenCV/</loc>
 	  </url>
 	
 	  <url>
-		<loc>http://ahmedmadbouly.github.io/Tic-Tac-Toe-AI/</loc>
+		<loc>http://localhost:4000/Tic-Tac-Toe-AI/</loc>
 	  </url>
 	
 </urlset>

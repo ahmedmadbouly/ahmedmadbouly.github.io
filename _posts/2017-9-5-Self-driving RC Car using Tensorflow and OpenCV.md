@@ -76,15 +76,15 @@ If there's one topic that gets a lot of attention lately in the media, the publi
 
 ### Step 2: Connecting
 
-<p align='center'> <img src = '{{site.baseurl}}/assets/img/connecting/1.jpg ' width="600" height="600"> </p>
-<p align='center' > <img src = '{{site.baseurl}}/assets/img/connecting/2.jpg' width="600" height="600"> </p>
+<p align='center'> <img src = '{{site.baseurl}}/assets/img/connecting/1.jpg '> </p>
+<p align='center' > <img src = '{{site.baseurl}}/assets/img/connecting/2.jpg'> </p>
 <p align='center'> <img src = '{{site.baseurl}}/assets/img/connecting/3.jpg'> </p>
 <p align='center'> <img src = '{{site.baseurl}}/assets/img/connecting/4.jpg'> </p>
 <p align='center'> <img src = '{{site.baseurl}}/assets/img/connecting/5.jpg'> </p>
-<p align='center'> <img src = '{{site.baseurl}}/assets/img/connecting/6.JPG ' width="600" height="600"> </p>
-<p align='center'> <img src = '{{site.baseurl}}/assets/img/connecting/7.JPG ' width="600" height="600"> </p>
-<p align='center'> <img src = '{{site.baseurl}}/assets/img/connecting/8.JPG ' width="600" height="600"> </p>
-<p align='center'> <img src = '{{site.baseurl}}/assets/img/connecting/9.JPG ' width="600" height="600"> </p>
+<p align='center'> <img src = '{{site.baseurl}}/assets/img/connecting/6.JPG '> </p>
+<p align='center'> <img src = '{{site.baseurl}}/assets/img/connecting/7.JPG '> </p>
+<p align='center'> <img src = '{{site.baseurl}}/assets/img/connecting/8.JPG '> </p>
+<p align='center'> <img src = '{{site.baseurl}}/assets/img/connecting/9.JPG '> </p>
 
 ### Step 3: Wiring Pi and Components
 <p align='center'> <img src = '{{site.baseurl}}/assets/img/wiring.jpg'> </p>
