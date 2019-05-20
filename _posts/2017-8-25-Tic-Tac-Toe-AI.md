@@ -422,7 +422,7 @@ We can reason about such function in the following manner:
 
 We now have our score function (which doesn't need to keep track of X's moves count as we said before):
 
-<p align = 'ceneter'><img src = '{{site.baseurl}}/assets/imag/score_func.png' alt = 'Score Function'/></p>
+<p align = 'ceneter'><img src = '{{site.baseurl}}/assets/img/score_func.png' alt = 'Score Function'/></p>
 
 We'll implement this as a public static function of the Game class. We implement it in the Game class because it's a game-related information, and static because it doesn't depend on specific instances of the game.
 
