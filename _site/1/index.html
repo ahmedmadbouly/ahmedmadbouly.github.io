@@ -24,7 +24,7 @@
     
 
     <!-- Social: Facebook / Open Graph -->
-    <meta property="og:url" content="http://localhost:4000/Tic-Tac-Toe-AI/">
+    <meta property="og:url" content="http://localhost:4000/1/">
     <meta property="og:title" content="Building a Tic-Tac-Toe AI with Javascript">
     
     <meta property="og:image" content="http://localhost:4000/assets/img/blog-image.png">
@@ -64,7 +64,7 @@
     <meta name="theme-color" content="#0562DC">
 
     <link rel="stylesheet" href="/assets/css/main.css">
-    <link rel="canonical" href="http://localhost:4000/Tic-Tac-Toe-AI/">
+    <link rel="canonical" href="http://localhost:4000/1/">
 
     <!--
 
@@ -140,7 +140,7 @@
         <section class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
             <article role="article" id="scroll" class="post-content" itemprop="articleBody">
-                <p align="center"> <img src="/assets/img/ai_tic_tac_toe_header.png" alt="Tic-Tac-Toe AI" /> </p>
+                <p align="center"> <img src="/assets/img/1/ai_tic_tac_toe_header.png" alt="Tic-Tac-Toe AI" /> </p>
 
 <p>When we say the word <strong>game</strong> in the context of AI we usually don’t mean it in the sense of entertainment games, instead we refer to a more general definition of a game:</p>
 
@@ -561,7 +561,7 @@ A player should try to win in the lowest possible number of moves.</p>
 
 <p>We now have our score function (which doesn’t need to keep track of X’s moves count as we said before):</p>
 
-<p align="ceneter"><img src="/assets/img/score_func.png" alt="Score Function" /></p>
+<p align="ceneter"><img src="/assets/img/1/score_func.png" alt="Score Function" /></p>
 
 <p>We’ll implement this as a public static function of the Game class. We implement it in the Game class because it’s a game-related information, and static because it doesn’t depend on specific instances of the game.</p>
 
@@ -594,7 +594,7 @@ A player should try to win in the lowest possible number of moves.</p>
 
 <p>The algorithm is used to calculate the minimax value of a specific state (or the action that leads to that state), and it works by knowing that someone wants to <strong>mini</strong>mize the score function and the other wants to <strong>max</strong>imize the score function (and that’s why it’s called <strong>minimax</strong>). Suppose that O wants to calculate the minimax value of the action that leads it to the state at level 0 in the following figure:</p>
 
-<p align="center"><img src="/assets/img/tree.png" alt="minimax tree" /></p>
+<p align="center"><img src="/assets/img/1/tree.png" alt="minimax tree" /></p>
 
 <ul>
   <li><strong>At Level 0</strong>: O wants to calculate the minimax value of that state, So it asks a question: What are X’s moves if I took the action to that state ?! To answer this question, it generates all the states that X can reach through all his possible actions (The states in Level 1).</li>
@@ -849,15 +849,15 @@ A player should try to win in the lowest possible number of moves.</p>
 
             <section class="share">
     <h3>Share</h3>
-    <a aria-label="Share on Twitter" href="https://twitter.com/intent/tweet?text=&quot;&quot;%20http://localhost:4000/Tic-Tac-Toe-AI/%20via%20&#64;AhmedMadpouly&hashtags="
+    <a aria-label="Share on Twitter" href="https://twitter.com/intent/tweet?text=&quot;&quot;%20http://localhost:4000/1/%20via%20&#64;AhmedMadpouly&hashtags="
     onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" title="Share on Twitter">
         <svg class="icon icon-twitter"><use xlink:href="#icon-twitter"></use></svg>
     </a>
-    <a aria-label="Share on Facebook"href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/Tic-Tac-Toe-AI/"
+    <a aria-label="Share on Facebook"href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/1/"
     onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" title="Share on Facebook">
         <svg class="icon icon-facebook"><use xlink:href="#icon-facebook"></use></svg>
     </a>
-    <a aria-label="Share on Google Plus" href="https://plus.google.com/share?url=http://localhost:4000/Tic-Tac-Toe-AI/"
+    <a aria-label="Share on Google Plus" href="https://plus.google.com/share?url=http://localhost:4000/1/"
     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" title="Share on Google+">
         <svg class="icon icon-google-plus"><use xlink:href="#icon-google-plus"></use></svg>
     </a>
@@ -869,7 +869,7 @@ A player should try to win in the lowest possible number of moves.</p>
         <h3 class="name">
             <a>Ahmed Madbouly</a>
         </h3>
-        <p class="desc">Wandering in a lifelong journey seeking after truth ...</p>
+        <p class="desc">Computer Science, MSc – Cairo University</p>
     </div>
 </section>
 
@@ -881,8 +881,8 @@ A player should try to win in the lowest possible number of moves.</p>
     var disqus_loaded = false;
 
     function disqus_config() {
-        this.page.url = 'http://localhost:4000' + '/Tic-Tac-Toe-AI/';
-        this.page.identifier = '/Tic-Tac-Toe-AI';
+        this.page.url = 'http://localhost:4000' + '/1/';
+        this.page.identifier = '/1';
         this.page.title = 'Building a Tic-Tac-Toe AI with Javascript';
     }
 

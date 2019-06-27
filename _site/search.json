@@ -1,10 +1,34 @@
 [
   
     {
+      "title"    : "Make Your Own Text to Speech",
+      "category" : "Natural Language Understanding",
+      "tags"     : "",
+      "url"      : "/5/",
+      "date"     : "26 Jun 2019"
+    } ,
+  
+    {
+      "title"    : "Build your Home Assistant With Jetson Nano",
+      "category" : "Natural Language Understanding",
+      "tags"     : "",
+      "url"      : "/4/",
+      "date"     : "26 Jun 2019"
+    } ,
+  
+    {
+      "title"    : "Build your Home Assistant With Raspberry Pi",
+      "category" : "Natural Language Understanding",
+      "tags"     : "",
+      "url"      : "/3/",
+      "date"     : "26 Jun 2019"
+    } ,
+  
+    {
       "title"    : "Self-driving RC Car using Tensorflow and OpenCV",
       "category" : "Artificial IntelligenceOpenCVTensorflow",
       "tags"     : "",
-      "url"      : "/Self-driving-RC-Car-using-Tensorflow-and-OpenCV/",
+      "url"      : "/2/",
       "date"     : "05 Sep 2017"
     } ,
   
@@ -12,7 +36,7 @@
       "title"    : "Building a Tic-Tac-Toe AI with Javascript",
       "category" : "Artificial IntelligenceJavascript",
       "tags"     : "",
-      "url"      : "/Tic-Tac-Toe-AI/",
+      "url"      : "/1/",
       "date"     : "25 Aug 2017"
     } 
   

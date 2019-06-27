@@ -1,4 +1,4 @@
-## Ahmed Madbouly Template - [Demo](http://ahmedmadbouly.ml)
+## Ahmed Madbouly Template - [Demo](https://ahmedmadbouly.github.io)
 
 ![Screenshot](screenshot.png)
 
